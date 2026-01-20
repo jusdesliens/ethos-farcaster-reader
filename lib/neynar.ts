@@ -1,17 +1,25 @@
 import { NeynarAPIClient } from '@neynar/nodejs-sdk';
 import { Cast, FarcasterUser } from './types';
 
-const client = new NeynarAPIClient(process.env.NEYNAR_API_KEY || '');
+// Initialiser avec la clé (sans vérification du format)
+const apiKey = process.env.NEYNAR_API_KEY || '';
+console.log('Neynar API Key présente:', apiKey ? 'Oui' : 'Non');
+
+const client = new NeynarAPIClient(apiKey);
 
 export async function getChannelFeed(
   channelId: string,
   limit: number = 25
 ): Promise<Cast[]> {
   try {
+    console.log(`Fetching channel: ${channelId}, limit: ${limit}`);
+    
     const response = await client.fetchFeedByChannelIds([channelId], {
       limit,
       withRecasts: false,
     });
+
+    console.log(`Received ${response.casts.length} casts`);
 
     return response.casts.map(cast => ({
       hash: cast.hash,
@@ -35,6 +43,12 @@ export async function getChannelFeed(
     }));
   } catch (error) {
     console.error('Error fetching channel feed:', error);
+    // Afficher plus de détails sur l'erreur
+    if (error instanceof Error) {
+      console.error('Error name:', error.name);
+      console.error('Error message:', error.message);
+      console.error('Error stack:', error.stack);
+    }
     throw new Error('Failed to fetch channel feed');
   }
 }
