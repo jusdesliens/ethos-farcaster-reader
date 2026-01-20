@@ -1,0 +1,14 @@
+{
+  "accountAssociation": {
+    "header": "eyJmaWQiOjEsInR5cGUiOiJjdXN0b2R5Iiwia2V5IjoiMHgwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwIn0",
+    "payload": "eyJkb21haW4iOiJ5b3VyLWFwcC52ZXJjZWwuYXBwIn0",
+    "signature": "MHg..."
+  },
+  "frame": {
+    "version": "next",
+    "imageUrl": "https://your-app.vercel.app/og-image.png",
+    "button": {
+      "title": "Open Ethos Reader",
+      "action": {
+        "type": "launch_frame",
+        "name": "Ethos Channel Reader
