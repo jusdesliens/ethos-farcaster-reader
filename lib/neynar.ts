@@ -22,8 +22,8 @@ export async function getChannelFeed(
         displayName: cast.author.display_name || cast.author.username,
         pfpUrl: cast.author.pfp_url || '',
         custodyAddress: cast.author.custody_address,
-        verifiedAddresses: cast.author.verifications_count > 0 
-          ? { ethAddresses: cast.author.verified_addresses?.eth_addresses || [] }
+        verifiedAddresses: cast.author.verified_addresses?.eth_addresses && cast.author.verified_addresses.eth_addresses.length > 0
+          ? { ethAddresses: cast.author.verified_addresses.eth_addresses }
           : undefined,
       },
       timestamp: cast.timestamp,
